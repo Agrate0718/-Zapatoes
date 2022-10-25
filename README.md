@@ -38,6 +38,10 @@ Zapatoes is an app that allows you to list and show shoes for selling and for us
 * Users can filter search using chips for specific brands, colors, and sizes of shoes
 * Make the Site mobile friendly 
 
+## ERD
+
+![ERD](/img/ERD.jpg)
+
 ## RESTful Routes
 
 ### Shoes

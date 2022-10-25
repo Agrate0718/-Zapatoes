@@ -1,2 +1,2 @@
-# -Zapatoes
+# Zapatoes
 Shoe selling website

@@ -7,13 +7,33 @@ import TestPage from './components/pages/TestPage';
 import Navbar from './components/partials/navbar';
 import Shoes from './components/partials/Shoes';
 import ShoeDetails from './components/partials/ShoeDetails';
+import jwt_decode from 'jwt-decode'
+import { useEffect, useState } from 'react';
+import Login from './components/Forms/Login';
+import axios from 'axios';
+import ShoeForm from './components/Forms/ShoeForm';
+
 
 function App() {
+  // State
+  const [currentUser, setCurrentUser] = useState(null)
+
+ // Hooks
+  useEffect(() => {
+    // check to see if token is in storage
+    const token = localStorage.getItem('jwt')
+    if (token) {
+      // if so, we will decode it and set the user in app state
+      setCurrentUser(jwt_decode(token))
+    } else {
+      setCurrentUser(null)
+    }
+  }, []) // happen only once
+
+ 
+
   return (
     <Router>
-      <header className='text-center'>
-        <Navbar />
-      </header>
          <div>
     <Routes>
     <Route // Landing
@@ -50,6 +70,16 @@ function App() {
           path='/shoes/get/:shoeId'
           element={<ShoeDetails />}
           />
+
+        <Route
+          path='/owner'
+          element={<Login />}
+        />
+
+        <Route
+          path='/Create'
+          element={<ShoeForm />}
+        />
 
     </Routes>
       </div>

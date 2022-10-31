@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import OwnerNavbar from '../partials/OwnerNavbar'
 
 export default function ShoeForm(){
+
     const [form, setForm] = useState({
         name: '',
         image:'',
@@ -19,7 +21,7 @@ export default function ShoeForm(){
             // post form data to the backend API
             const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/shoes/create`, form);
             // navigate back to /courses to see the new course
-            navigate(`/shoes/get/${response.data.shoe._id}`);
+            navigate(`/shoes/get/${response.data.shoe._id}/owner`);
         } catch(err) {
             console.warn(err)
         }
@@ -27,13 +29,16 @@ export default function ShoeForm(){
 
     return(
         <div>
-            <div>
+            <header className='text-center'>
+            <OwnerNavbar />
+        </header>
+            <div className=" w-full max-w-xs">
                 <h5>Create a Shoe card</h5>
 
-                <form action="#" onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="name">Name:</label>
-                        <input 
+                <form action="#" className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+                    <div >
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Name:</label>
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                             type="text"
                             id='name'
                             value={form.name}
@@ -44,8 +49,8 @@ export default function ShoeForm(){
                         
                     </div>
                     <div>
-                        <label htmlFor="image">Image:</label>
-                        <input 
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">Image:</label>
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             type="text"
                             id='image'
                             value={form.image}
@@ -56,8 +61,8 @@ export default function ShoeForm(){
                         
                     </div>
                     <div>
-                        <label htmlFor="quality">Quality:</label>
-                        <input 
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="quality">Quality:</label>
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                             type="text"
                             value={form.quality}
                             placeholder='put the quality of the shoe here'
@@ -67,8 +72,8 @@ export default function ShoeForm(){
                         
                     </div>
                     <div>
-                        <label htmlFor="price">Price:</label>
-                        <input 
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">Price:</label>
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             type="number"
                             value={form.price}
                             placeholder='price of shoe here'
@@ -77,9 +82,12 @@ export default function ShoeForm(){
                         />
                         
                     </div>
-                    <button type='submit'>Submit</button>
+                    <button className='bg-[#111827] hover:bg-[#7188b8] text-white uppercase rounded ' type='submit'>Submit</button>
+                    <button className="inline-flex items-center ml-20 mt-10 uppercase text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-bred-600 dark:hover:bg-red-700 dark:focus:ring-red-800" onClick={() => navigate(-1)}>cancel</button>
+
                 </form>
             </div>
         </div>
     )
 }
+

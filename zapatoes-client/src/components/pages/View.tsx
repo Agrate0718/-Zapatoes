@@ -1,11 +1,9 @@
 import Navbar from "../partials/navbar";
+import OwnerNavbar from "../partials/OwnerNavbar";
 
 export default function View(){
     return(
         <div>
-             <header className='text-center'>
-        <Navbar />
-      </header>
             <>
             View Page 
             </>

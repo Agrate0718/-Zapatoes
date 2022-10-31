@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const db = require('../../models')
 import { NextFunction, Response, Request  } from "express";
+import Seller from "../models/Seller";
 
 // route specific middleware for jwt authorization
 const authLockedRoute = async (req: Request, res: Response, next: NextFunction) => {
@@ -9,10 +10,10 @@ const authLockedRoute = async (req: Request, res: Response, next: NextFunction) 
     const authHeader = req.headers.authorization
     // will throw to catch if jwt can't be verified
     const decode = jwt.verify(authHeader, process.env.JWT_SECRET)
-    // find user from db
-    const foundUser = await db.User.findById(decode.id)
-    // mount user on locals
-    res.locals.user = foundUser
+    // find Seller from db
+    const foundSeller = await Seller.findById(decode.id)
+    // mount Seller on locals
+    res.locals.Seller = foundSeller
     next()
 
   } catch(error) {

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import jwt_decode from 'jwt-decode'
-import { Navigate } from "react-router-dom"
 import axios from "axios"
-import Navbar from "../partials/navbar"
 import OwnerNavbar from "../partials/OwnerNavbar"
+import { Link, Navigate } from "react-router-dom"
+
 
 export default function Login(){
+    let x = false
      // State
   const [currentUser, setCurrentUser] = useState(null)
   // state for the controlled form
@@ -33,8 +34,10 @@ export default function Login(){
       localStorage.removeItem('jwt')
       // set the user in the App state to be null
       setCurrentUser(null)
+      
     }
   }
+
 
   const handleSubmit = async (e:any) => {
     e.preventDefault()
@@ -53,19 +56,27 @@ export default function Login(){
     
         // set the user in App's state to be the decoded token
         setCurrentUser(jwt_decode(token))
-
+        const signedIn = true
+      
     } catch (err:any) {
         console.warn(err)
         if (err.response) {
             setMsg(err.response.data.msg)
+            console.log('msg')
         }
+       
     }
+    
+    //   if(signedIn){
+    //     return <Navigate to={'/Inquiries'}
+    // }
  }
+    console.log('x value:',x)
 console.log('msg:',msg)
 console.log(currentUser)
 // conditionally render a navigate component
 // if (currentUser) {
-//     return <Navigate to={'/'} />
+//     return <Navigate to={'/inquiries'} />
 // }
 
 return (
@@ -78,17 +89,11 @@ return (
         <section className="h-screen">
             <div className="container px-6 py-12 h-full">
                 <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-                    <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-                        <img
-                        src="/loginNew.svg"
-                        className="w-full"
-                        alt="Phone image"
-                        />
-                    </div>
+                    
 
                     <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
                         <form onSubmit={handleSubmit}>
-                            <p>Login to your Account:</p>
+                            <p>Login to your Account</p>
                             <br></br>
 
                             {/* <!-- userName input --> */}
@@ -118,15 +123,18 @@ return (
                             </div>
 
                             {/* <!-- Submit button --> */}
+                            <Link to={'/Inquiries'} >
                             <button
                                 type="submit"
-                                className="inline-block px-7 py-3 bg-[#898e59] hover:bg-[#aab161] text-white font-medium text-sm leading-snug uppercase rounded shadow-md  hover:shadow-lg focus:bg-[#b7bf61] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#b7bf61] active:shadow-lg transition duration-150 ease-in-out w-full"
+                                className="inline-block px-7 py-3 bg-[#111827] hover:bg-[#7188b8] text-white  font-medium text-sm leading-snug uppercase rounded shadow-md  hover:shadow-lg focus:bg-[#b7bf61] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#b7bf61] active:shadow-lg transition duration-150 ease-in-out w-full"
                                 data-mdb-ripple="true"
                                 data-mdb-ripple-color="light"
                             >
                                 Sign in
                             </button>
-                            <button onClick={handleLogout}>logout</button>
+                            </Link>
+                            
+                            
 
                             {/* <div
                                 className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5"
@@ -134,6 +142,11 @@ return (
                                 <p className="text-center font-semibold mx-4 mb-0">OR</p>
                             </div> */}
                         </form>
+                        <Link to={'/'}>
+                            <button className="bg-[#981634] hover:bg-[#d01d46] text-white uppercase rounded" onClick={handleLogout}>logout</button>
+                        </Link>
+                        
+
                     </div>
                 </div>
             </div>

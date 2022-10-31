@@ -5,6 +5,7 @@ import controller from '../controllers/Seller'
 const router = express.Router();
 
 router.post('/create', controller.createSeller);
+router.post('/login', controller.sellerLogin)
 router.get('/get/:sellerId', controller.readSeller);
 router.get('/get/', controller.readAll);
 router.patch('/update/:sellerId', controller.updateSeller);

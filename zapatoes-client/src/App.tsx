@@ -12,6 +12,10 @@ import { useEffect, useState } from 'react';
 import Login from './components/Forms/Login';
 import axios from 'axios';
 import ShoeForm from './components/Forms/ShoeForm';
+import InquiryForm from './components/Forms/InquiryForm';
+import InquiryDetails from './components/partials/InquiryDetails';
+import OwnerShoes from './components/partials/OwnerShoes';
+import OwnerShoeDetails from './OwnerShoeDetails';
 
 
 function App() {
@@ -57,6 +61,11 @@ function App() {
           />
 
     <Route // Landing
+            path="/Inquiry"
+            element={<InquiryForm />}
+          />
+
+<Route // Landing
             path="/Inquiries"
             element={<Inquiries />}
           />
@@ -70,6 +79,10 @@ function App() {
           path='/shoes/get/:shoeId'
           element={<ShoeDetails />}
           />
+        <Route
+          path='/shoes/get/:shoeId/owner'
+          element={<OwnerShoeDetails />}
+          />
 
         <Route
           path='/owner'
@@ -79,6 +92,21 @@ function App() {
         <Route
           path='/Create'
           element={<ShoeForm />}
+        />
+
+        <Route
+          path='/Edit/:shoeId'
+          element={<ShoeEditForm />}
+        />
+
+        <Route
+          path='/inquiries/get/:inquiryId'
+          element={<InquiryDetails />}
+          />
+
+        <Route
+          path='/owner/View'
+          element={<OwnerShoes />}
         />
 
     </Routes>

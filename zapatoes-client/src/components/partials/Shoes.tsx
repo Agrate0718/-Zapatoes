@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import ShoeList from "../ShoeList";
-import ShoeSearch from "./ShoeSearch";
+import Navbar from "./navbar";
 
 
 export default function Shoes(){
@@ -33,18 +33,24 @@ export default function Shoes(){
         return <ShoeList shoe={shoe} key={shoe._id} />
     })
     return(
-        <div className="p-10">
+        <div>
+            <header className='text-center'>
+        <Navbar />
+      </header>
+          <div className="p-10">
             <h1>All Shoes</h1>
             {/* <ShoeSearch search={search} setSearch={setSearch} /> */}
             <div>
             <input type="search" value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border rounded-full shadow-sm overflow-visible focus:text-gray-700 focus:border-blue-600 focus:outline-none" placeholder="Search for anything" aria-label="Search" 
+                className="w-full px-4 py-2 text-sm text-gray-700 bg-white border rounded-full shadow-sm overflow-visible focus:text-gray-700 focus:border-blue-600 focus:outline-none" placeholder="Search for some Shoes" aria-label="Search" 
             />
              </div>
              <div className='mt-3 flex flex-wrap justify-center gap-8'>
              {shoeListComponents}
             </div>
+        </div>  
         </div>
+        
     )
 }

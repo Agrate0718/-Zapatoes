@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import Seller from "../models/Seller";
 
 const createSeller = (req: Request, res: Response, next: NextFunction) => {
-    const { name } = req.body;
+    const  { name }  = req.body;
 
     const seller = new Seller({
         _id: new mongoose.Types.ObjectId(),

@@ -3,9 +3,16 @@ import http from 'http';
 import mongoose from 'mongoose';
 import { config } from './config/config'
 import Logging from './library/Logging'
+import shoeRoutes from './routes/Shoe';
 import sellerRoutes from './routes/Seller'
+import inquiryRoutes from './routes/Inquiry'
 
 const router = express();
+const cors = require('cors')
+
+router.use(cors())
+router.use(express.json())
+
 
 // Connect to Mongo
 mongoose
@@ -50,6 +57,8 @@ const StartServer = () => {
 
     // Routes 
     router.use('/sellers', sellerRoutes);
+    router.use('/shoes', shoeRoutes)
+    router.use('/inquiries', inquiryRoutes)
 
     // Healthcheck
     router.get('/ping', (req, res, next) => res.status(200).json({message: 'pong'}));

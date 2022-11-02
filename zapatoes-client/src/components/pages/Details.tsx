@@ -12,6 +12,7 @@ export default function Details(){
             Social Media Info <br />
             Picture of Bro <br />
             Description of Bro <br />
+            Yea boy I did it Graduation babbyyyyyy
 
             </div>
         </div>

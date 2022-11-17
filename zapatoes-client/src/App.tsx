@@ -16,6 +16,7 @@ import InquiryForm from './components/Forms/InquiryForm';
 import InquiryDetails from './components/partials/InquiryDetails';
 import OwnerShoes from './components/partials/OwnerShoes';
 import OwnerShoeDetails from './OwnerShoeDetails';
+// import Misc from './components/Misc';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
     <Route // Landing
             path="/"
             element={<Home />}
+            // element={<Misc />}
           />
         
         <Route // Landing
